@@ -11,6 +11,10 @@ export default function (props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function addtocart() {
+    // dispatch action add to cart which later on will be handeled by reducer
+  }
+
   return (
     <div
       style={{ margin: "50px" }}
@@ -61,7 +65,10 @@ export default function (props) {
           <p>Price : {pizza.prices[0][varient] * quantity} Rs</p>
         </div>
         <div className="m-1 w-100">
-          <button className="btn"> ADD TO CART</button>
+          <button className="btn" onClick={addtocart}>
+            {" "}
+            ADD TO CART
+          </button>
         </div>
       </div>
       <Modal show={show} onHide={handleClose}>
