@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Pizza from "../components/Pizza";
-import pizzas from "../pizzasdata";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPizzas } from "../actions/pizzaActions";
 import Spinner from "../components/Spinner";
