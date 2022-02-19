@@ -1,4 +1,6 @@
-export const getAllPizzas = () => (dispatch) => {
+import axios from "axios";
+
+export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: "GET_PIZZAS_REQUEST" });
 
   try {
