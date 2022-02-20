@@ -5,12 +5,15 @@ export default function Cartscreen() {
   const cartstate = useSelector((state) => state.cartReducer);
   const cartItems = cartstate.cartItems;
   const dispatch = useDispatch();
+  var subtotal = cartItems.reduce((x, item) => x + item.price, 0);
 
   return (
     <div>
       <div className="row justify-content-center">
         <div className="col-md-6 mt-5">
-          <h2 style={{ fontSize: "30px", marginBottom: "60px" }}>CART</h2>
+          <h2 style={{ fontSize: "30px", marginBottom: "60px" }}>
+            HELLO CART!!
+          </h2>
           {cartItems.map((item) => {
             return (
               <div className="flex-container">
@@ -63,7 +66,10 @@ export default function Cartscreen() {
             );
           })}
         </div>
-        <div className="col-md-4"></div>
+        <div className="col-md-4">
+          <h2 style={{ fontSize: "30px" }}>SUBTOTAL: {subtotal} /-</h2>
+          <button className="btn">PAY NOW</button>
+        </div>
       </div>
     </div>
   );
