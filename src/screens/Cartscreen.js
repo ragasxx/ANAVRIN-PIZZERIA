@@ -1,8 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, deleteFromCart } from "../actions/cartActions";
 export default function Cartscreen() {
   const cartstate = useSelector((state) => state.cartReducer);
   const cartItems = cartstate.cartItems;
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -20,9 +22,26 @@ export default function Cartscreen() {
                     Price: {item.quantity} * {item.varient} = {item.price}
                   </h1>
                   <h1 style={{ display: "inline" }}> Quantity: </h1>
-                  <i className="fa fa-plus" aria-hidden="true"></i>
+                  <i
+                    className="fa fa-minus"
+                    aria-hidden="true"
+                    onClick={() => {
+                      dispatch(
+                        addToCart(item, item.quantity - 1, item.varient)
+                      );
+                    }}
+                  ></i>
                   <b>{item.quantity}</b>
-                  <i className="fa fa-minus" aria-hidden="true"></i>
+
+                  <i
+                    className="fa fa-plus"
+                    aria-hidden="true"
+                    onClick={() => {
+                      dispatch(
+                        addToCart(item, item.quantity + 1, item.varient)
+                      );
+                    }}
+                  ></i>
                   <hr />
                 </div>
                 <div className="w-100">
@@ -32,7 +51,13 @@ export default function Cartscreen() {
                   />
                 </div>
                 <div className="m-1 w-100 mt-4">
-                  <i className="fa fa-trash" aria-hidden="true"></i>
+                  <i
+                    className="fa fa-trash"
+                    aria-hidden="true"
+                    onClick={() => {
+                      dispatch(deleteFromCart(item));
+                    }}
+                  ></i>
                 </div>
               </div>
             );
